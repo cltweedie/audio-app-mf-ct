@@ -1,2 +1,3 @@
 fastai2
+fastai2-audio
 ipykernel
