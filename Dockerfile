@@ -8,13 +8,9 @@ RUN apt-get update && apt-get install -y git python3-dev gcc \
 
 COPY requirements.txt .
 
-RUN pip install --upgrade -r requirements.txt
+RUN pip install --upgrade -r app/requirements.txt
 
-#RUN pip install git+https://github.com/rbracco/fastai2_audio.git
-
-COPY requirements2.txt .
-
-RUN pip install --upgrade -r requirements2.txt
+RUN pip install git+https://github.com/rbracco/fastai2_audio.git
 
 COPY app app/
 
