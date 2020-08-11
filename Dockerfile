@@ -6,7 +6,7 @@ RUN apt-get update -y && apt-get install -y --no-install-recommends build-essent
 RUN apt-get update && apt-get install -y git python3-dev gcc \
     && rm -rf /var/lib/apt/lists/*
 
-COPY requirements.txt .
+COPY app/requirements.txt .
 
 RUN pip install --upgrade -r app/requirements.txt
 
