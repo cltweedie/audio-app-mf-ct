@@ -11,6 +11,8 @@ COPY requirements.txt ./
 
 RUN pip install --no-cache-dir -r requirements.txt
 
+RUN pip install --no-index --find-links git+https://github.com/rbracco/fastai2_audio.git
+
 COPY app app/
 
 RUN python app/server.py
