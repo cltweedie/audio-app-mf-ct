@@ -5,16 +5,16 @@ RUN apt-get update && apt-get install -y git python3-dev gcc \
 
 COPY requirements.txt .
 
-RUN pip install Pillow==6.1
+RUN pip install Pillow==7.0.0 
 
 RUN pip install SoundFile
 
 RUN apt-get update -y && apt-get install -y --no-install-recommends build-essential gcc \
-                                        libsndfile1 
+    libsndfile1 
+
+RUN packaging==20.4
 
 RUN pip install --upgrade -r requirements.txt
-
-RUN pip install git+https://github.com/rbracco/fastai2_audio.git
 
 COPY app app/
 
