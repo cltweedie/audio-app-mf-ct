@@ -19,7 +19,7 @@ from starlette.staticfiles import StaticFiles
 export_file_url = 'https://drive.google.com/uc?export=download&id=1-5gNLy4KpWEAxM7OYfyri8YbtifBRvv7'
 export_file_name = 'resnet18-export-v2.pkl'
 
-with open('classes.txt', 'r') as f:
+with open('app/classes.txt', 'r') as f:
     classes = ast.literal_eval(f.read())
 path = Path(__file__).parent
 
