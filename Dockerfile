@@ -7,6 +7,8 @@ COPY requirements.txt .
 
 RUN pip install Pillow==6.1
 
+RUN sudo apt-get install libsndfile1
+
 RUN pip install --upgrade -r requirements.txt
 
 RUN pip install git+https://github.com/rbracco/fastai2_audio.git
