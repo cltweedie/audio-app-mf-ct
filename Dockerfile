@@ -1,7 +1,7 @@
 FROM python:3.7-slim-stretch
 
 RUN apt-get update -y && apt-get install -y --no-install-recommends build-essential gcc \
-                                        libsndfile1 
+    libsndfile1 
 
 RUN apt-get update && apt-get install -y git python3-dev gcc \
     && rm -rf /var/lib/apt/lists/*
@@ -10,7 +10,11 @@ COPY requirements.txt .
 
 RUN pip install --upgrade -r requirements.txt
 
-RUN pip install git+https://github.com/rbracco/fastai2_audio.git
+#RUN pip install git+https://github.com/rbracco/fastai2_audio.git
+
+COPY requirements2.txt .
+
+RUN pip install --upgrade -r requirements2.txt
 
 COPY app app/
 
