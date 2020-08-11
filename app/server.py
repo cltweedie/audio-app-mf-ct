@@ -17,8 +17,8 @@ from starlette.responses import HTMLResponse, JSONResponse
 from starlette.staticfiles import StaticFiles
 
 
-export_file_url = 'https://drive.google.com/uc?export=download&id=1NryOFwHs6T3HlkG_dsSCslWgcviRv4h-'
-export_file_name = 'export-download.pkl'
+export_file_url = ''
+export_file_name = 'export.pkl'
 
 with open('app/classes.txt', 'r') as f:
     classes = ast.literal_eval(f.read())
@@ -44,7 +44,7 @@ async def setup_learner():
         def get_file(r): return '../content/train_curated/'+r['fname'] # to avoid AttributeError
         def get_label(r): return r['labels'].split(',') # to avoid AttributeError
         print("File exists?:",os.path.exists(path/export_file_name))
-        learn = load_learner(path/export_file_name)
+        learn = load_learner(path, export_file_name)
         return learn
     except RuntimeError as e:
         if len(e.args) > 0 and 'CPU-only machine' in e.args[0]:
