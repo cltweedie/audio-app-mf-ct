@@ -10,7 +10,7 @@ COPY requirements.txt .
 
 RUN pip install --upgrade -r requirements.txt
 
-RUN pip install git+https://github.com/rbracco/fastai2_audio.git
+RUN pip install -e git+https://github.com/rbracco/fastai2_audio.git
 
 COPY app app/
 
