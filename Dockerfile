@@ -8,11 +8,11 @@ RUN pip install --no-cache-dir SoundFile
 RUN apt-get update -y && apt-get install -y --no-install-recommends build-essential gcc \
     libsndfile1 
 
-COPY requirements.txt .
+RUN pip install --no-cache-dir packaging
 
-RUN pip install --upgrade -r requirements.txt
+COPY requirements.txt ./
 
-RUN pip install --no-cache-dir packaging git+https://github.com/rbracco/fastai2_audio.git
+RUN pip install --no-cache-dir -r requirements.txt
 
 COPY app app/
 
