@@ -4,9 +4,9 @@ asyncio==3.4.3
 fastai==1.0.61
 fastai2==0.0.21
 fastcore==0.1.24
-https://download.pytorch.org/whl/cpu/torch-1.6.0%2Bcpu-cp37-cp37m-linux_x86_64.whl
-https://download.pytorch.org/whl/cpu/torchvision-0.7.0%2Bcpu-cp37-cp37m-linux_x86_64.whl
-https://download.pytorch.org/whl/torchaudio-0.6.0-cp37-cp37m-linux_x86_64.whl
+https://download.pytorch.org/whl/cpu/torch-1.6.0%2Bcpu-cp36-cp36m-linux_x86_64.whl
+https://download.pytorch.org/whl/cpu/torchvision-0.7.0%2Bcpu-cp36-cp36m-linux_x86_64.whl
+https://download.pytorch.org/whl/torchaudio-0.6.0-cp36-cp36m-linux_x86_64.whl
 ipykernel==4.10.1
 numpy==1.18.5
 starlette==0.12.0
