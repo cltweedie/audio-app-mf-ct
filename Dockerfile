@@ -7,7 +7,7 @@ COPY requirements.txt .
 
 RUN pip install Pillow==6.1
 
-RUN conda install -c conda-forge libsndfile --yes
+RUN pip install SoundFile
 
 RUN pip install --upgrade -r requirements.txt
 
