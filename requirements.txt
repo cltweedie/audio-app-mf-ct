@@ -5,6 +5,7 @@ asyncio==3.4.3
 fastai==1.0.61
 fastai2==0.0.21
 fastcore==0.1.24
+SoundFile
 torch==1.6.0
 torchaudio==0.6.0
 torchvision==0.7.0
