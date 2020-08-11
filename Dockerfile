@@ -9,6 +9,9 @@ RUN pip install Pillow==6.1
 
 RUN pip install SoundFile
 
+RUN apt-get update -y && apt-get install -y --no-install-recommends build-essential gcc \
+                                        libsndfile1 
+
 RUN pip install --upgrade -r requirements.txt
 
 RUN pip install git+https://github.com/rbracco/fastai2_audio.git
