@@ -1,5 +1,7 @@
 FROM python:3.7-slim-stretch
 
+RUN pip install packaging==20.4
+
 RUN apt-get update && apt-get install -y git python3-dev gcc \
     && rm -rf /var/lib/apt/lists/*
 
@@ -11,8 +13,6 @@ RUN pip install SoundFile
 
 RUN apt-get update -y && apt-get install -y --no-install-recommends build-essential gcc \
     libsndfile1 
-
-RUN pip install packaging==20.4
 
 RUN pip install --upgrade -r requirements.txt
 
