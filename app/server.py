@@ -15,8 +15,6 @@ from starlette.applications import Starlette
 from starlette.middleware.cors import CORSMiddleware
 from starlette.responses import HTMLResponse, JSONResponse
 from starlette.staticfiles import StaticFiles
-from functools import partial
-import pickle
 
 
 export_file_url = 'https://drive.google.com/uc?export=download&id=1qKGYcaFaFTIF_4cdCKOdiXT7hyVHVKRU'
@@ -46,9 +44,6 @@ async def setup_learner():
         def get_file(r): return '../content/train_curated/'+r['fname'] # to avoid AttributeError
         def get_label(r): return r['labels'].split(',') # to avoid AttributeError
         print("File exists?:",os.path.exists(path/export_file_name))
-
-        pickle.load = partial(pickle.load, encoding="latin1")
-        pickle.Unpickler = partial(pickle.Unpickler, encoding="latin1")
         learn = load_learner(path/export_file_name)
         return learn
     except RuntimeError as e:
