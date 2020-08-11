@@ -12,7 +12,9 @@ RUN pip install SoundFile
 RUN apt-get update -y && apt-get install -y --no-install-recommends build-essential gcc \
     libsndfile1 
 
-RUN packaging==20.4
+RUN pip install packaging==20.4
+
+RUN pip install git+https://github.com/rbracco/fastai2_audio.git
 
 RUN pip install --upgrade -r requirements.txt
 
