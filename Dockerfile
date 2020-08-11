@@ -1,18 +1,16 @@
 FROM python:3.7-slim-stretch
 
-RUN pip install packaging==20.4
-
 RUN apt-get update && apt-get install -y git python3-dev gcc \
     && rm -rf /var/lib/apt/lists/*
 
-COPY requirements.txt .
-
-RUN pip install Pillow==7.0.0 
-
-RUN pip install SoundFile
+RUN pip install --upgrade pip && \
+    pip install --no-cache-dir SoundFile
+    pip install --no-cache-dir packaging git+https://github.com/rbracco/fastai2_audio.git
 
 RUN apt-get update -y && apt-get install -y --no-install-recommends build-essential gcc \
     libsndfile1 
+
+COPY requirements.txt .
 
 RUN pip install --upgrade -r requirements.txt
 
