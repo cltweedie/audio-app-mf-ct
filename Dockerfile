@@ -1,4 +1,4 @@
-FROM python:3.8-slim-buster
+FROM python:3.7-slim-stretch
 
 # RUN pip install --upgrade pip && \
 #     pip install --no-cache-dir packaging
