@@ -10,11 +10,9 @@ COPY requirements.txt .
 
 RUN pip install --upgrade -r requirements.txt
 
-RUN python -m pip install git+https://github.com/rbracco/fastai2_audio.git
+RUN pip install git+https://github.com/rbracco/fastai2_audio.git
 
 COPY app app/
-
-RUN python app/server.py
 
 EXPOSE 5000
 
