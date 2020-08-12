@@ -18,7 +18,7 @@ from starlette.staticfiles import StaticFiles
 
 
 
-export_file_url = 'https://console.cloud.google.com/storage/browser/fastai-model-bucket/resnet18-export-v2.pkl'
+export_file_url = 'https://storage.googleapis.com/fastai-model-bucket/resnet18-export-v2.pkl'
 #export_file_url = "https://www.googleapis.com/drive/v3/files/1-5gNLy4KpWEAxM7OYfyri8YbtifBRvv7/?key=AIzaSyCMqdjFMjVUCy1VhUznkaJcUy89pSFURFk&alt=media"
 export_file_name = 'learner.pkl'
 
