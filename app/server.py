@@ -34,6 +34,7 @@ async def download_file(url, dest):
     async with aiohttp.ClientSession() as session:
         async with session.get(url) as response:
             data = await response.read()
+            print("data response",data)
             with open(dest, 'wb') as f:
                 f.write(data)
 
