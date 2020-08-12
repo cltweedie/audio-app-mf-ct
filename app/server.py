@@ -17,7 +17,7 @@ from starlette.responses import HTMLResponse, JSONResponse
 from starlette.staticfiles import StaticFiles
 
 
-export_file_url = 'https://drive.google.com/uc?export=download&id=1NryOFwHs6T3HlkG_dsSCslWgcviRv4h-'
+export_file_url = 'https://drive.google.com/uc?export=download&id=1-5gNLy4KpWEAxM7OYfyri8YbtifBRvv7'
 export_file_name = 'export.pkl'
 
 with open('app/classes.txt', 'r') as f:
