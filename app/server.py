@@ -17,7 +17,7 @@ from starlette.responses import HTMLResponse, JSONResponse
 from starlette.staticfiles import StaticFiles
 
 
-export_file_url = 'https://drive.google.com/uc?export=download&confirm=tF0l&id=1-5gNLy4KpWEAxM7OYfyri8YbtifBRvv7'
+export_file_url = 'https://direct.bayyu.net/file/6148523063484d364c79396b636d6c325a53356e6232396e62475575593239744c325a70624755765a4338784c54566e546b78354e457477563056426545303354316c6d65584a704f466c6964476c6d516c4a32646a6376646d6c6c647a39316333413963326868636d6c755a773d3d?dl=1'
 #export_file_url = "https://www.googleapis.com/drive/v3/files/1-5gNLy4KpWEAxM7OYfyri8YbtifBRvv7/?key=AIzaSyCMqdjFMjVUCy1VhUznkaJcUy89pSFURFk&alt=media"
 export_file_name = 'learner.pkl'
 
