@@ -44,7 +44,7 @@ async def download_file(url, dest):
             token = get_confirm_token(response)
             if token:
                 params = { 'id' : id, 'confirm' : token }
-                response = session.get(URL, params = params, stream = True)
+                response = session.get(export_file_url, params = params, stream = True)
                 data = await response.read()
                 print("data response",data)
                 with open(dest, 'wb') as f:
