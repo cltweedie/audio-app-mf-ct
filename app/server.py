@@ -1,8 +1,8 @@
 # import os # for heroku only
 # import requests # for heroku only
 # Port = int(os.environ.get('PORT', 50000)) # for heroku only
-import urllib.request # new attempt at Google Drive
-import shutil # new attempt at Google Drive
+# import urllib.request # new attempt at Google Drive
+# import shutil # new attempt at Google Drive
 import aiohttp
 import asyncio
 import uvicorn
@@ -17,9 +17,11 @@ from starlette.applications import Starlette
 from starlette.middleware.cors import CORSMiddleware
 from starlette.responses import HTMLResponse, JSONResponse
 from starlette.staticfiles import StaticFiles
+from pydrive.auth import GoogleAuth # new attempt at google drive download
 
 
 export_file_url = 'https://drive.google.com/uc?export=download&id=1-5gNLy4KpWEAxM7OYfyri8YbtifBRvv7'
+export_file_id = "1-5gNLy4KpWEAxM7OYfyri8YbtifBRvv7"
 export_file_name = 'learner.pkl'
 
 with open('app/classes.txt', 'r') as f:
@@ -40,18 +42,20 @@ app.mount('/static', StaticFiles(directory='app/static'))
 #                 f.write(data)
 
 
-# new code
-async def download_file(url, dest):
-    if dest.exists(): return "dest.exists() = True"
-#    async with aiohttp.ClientSession() as session:
-    async with urllib.request.urlopen(url) as response:
-        with open(dest, 'wb') as out_file:
-            shutil.copyfileobj(response, out_file)
+# new code Google Drive Download
+async def download_file(id, dest):
+    if dest.exists(): return "dest.exists() True"
+    gauth = GoogleAuth()
+    gauth.LocalWebserverAuth()
+    drive = GoogleDrive(gauth)
+    file_obj = drive.CreateFile({'id': id})
+    file_obj.GetContentFile(dest)
 
 
 
 async def setup_learner():
-    await download_file(export_file_url, path/export_file_name)
+    #await download_file(export_file_url, path/export_file_name)
+    await download_file(export_file_id, path/export_file_name) # google drive
     try:
         def get_file(r): return '../content/train_curated/'+r['fname'] # to avoid AttributeError
         def get_label(r): return r['labels'].split(',') # to avoid AttributeError
