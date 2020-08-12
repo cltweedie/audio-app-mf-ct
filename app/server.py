@@ -17,8 +17,10 @@ from starlette.responses import HTMLResponse, JSONResponse
 from starlette.staticfiles import StaticFiles
 
 
-export_file_url = 'https://drive.google.com/uc?export=download&amp;confirm=UC0Z&amp;id=1-5gNLy4KpWEAxM7OYfyri8YbtifBRvv7'
+export_file_url = 'https://drive.google.com/u/0/uc?export=download&confirm=GYsN&id=1-5gNLy4KpWEAxM7OYfyri8YbtifBRvv7'
 export_file_name = 'learner.pkl'
+
+
 
 with open('app/classes.txt', 'r') as f:
     classes = ast.literal_eval(f.read())
