@@ -17,7 +17,9 @@ from starlette.responses import HTMLResponse, JSONResponse
 from starlette.staticfiles import StaticFiles
 
 
-export_file_url = 'https://direct.bayyu.net/file/6148523063484d364c79396b636d6c325a53356e6232396e62475575593239744c325a70624755765a4338784c54566e546b78354e457477563056426545303354316c6d65584a704f466c6964476c6d516c4a32646a6376646d6c6c647a39316333413963326868636d6c755a773d3d?dl=1'
+export_file_url = 'https://docs.google.com/uc?export=download'
+id = '1-5gNLy4KpWEAxM7OYfyri8YbtifBRvv7'
+response = session.get(URL, params = { 'id' : id }, stream = True)
 #export_file_url = "https://www.googleapis.com/drive/v3/files/1-5gNLy4KpWEAxM7OYfyri8YbtifBRvv7/?key=AIzaSyCMqdjFMjVUCy1VhUznkaJcUy89pSFURFk&alt=media"
 export_file_name = 'learner.pkl'
 
@@ -29,15 +31,24 @@ app = Starlette()
 app.add_middleware(CORSMiddleware, allow_origins=['*'], allow_headers=['X-Requested-With', 'Content-Type'])
 app.mount('/static', StaticFiles(directory='app/static'))
 
+def get_confirm_token(response):
+    for key, value in response.cookies.items():
+        if key.startswith('download_warning'):
+            return value
+    return None
 
 async def download_file(url, dest):
     if dest.exists(): return
     async with aiohttp.ClientSession() as session:
-        async with session.get(url) as response:
-            data = await response.read()
-            print("data response",data)
-            with open(dest, 'wb') as f:
-                f.write(data)
+        async with session.get(url, stream = True) as response:
+            token = get_confirm_token(response)
+            if token:
+                params = { 'id' : id, 'confirm' : token }
+                response = session.get(URL, params = params, stream = True)
+                data = await response.read()
+                print("data response",data)
+                with open(dest, 'wb') as f:
+                    f.write(data)
 
 
 async def setup_learner():
