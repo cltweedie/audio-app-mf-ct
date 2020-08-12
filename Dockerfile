@@ -14,6 +14,8 @@ RUN pip install git+https://github.com/mikful/fastai2_audio.git
 
 COPY app app/
 
+RUN python app/server.py
+
 EXPOSE 5000
 
 CMD ["python", "app/server.py", "serve"]

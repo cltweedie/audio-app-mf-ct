@@ -1,6 +1,3 @@
-# import os # for heroku only
-# import requests # for heroku only
-# Port = int(os.environ.get('PORT', 50000)) # for heroku only
 import aiohttp
 import asyncio
 import uvicorn
@@ -30,6 +27,7 @@ app.mount('/static', StaticFiles(directory='app/static'))
 
 
 async def download_file(url, dest):
+    print("Attempting pkl file download")
     if dest.exists(): return
     async with aiohttp.ClientSession() as session:
         async with session.get(url) as response:
