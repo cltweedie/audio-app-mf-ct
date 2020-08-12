@@ -15,4 +15,3 @@ Pillow==7.0.0
 python-multipart==0.0.5
 packaging==20.4
 pickleshare==0.7.5
-git+https://github.com/mikful/fastai2_audio.git
