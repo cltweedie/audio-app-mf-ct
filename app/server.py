@@ -1,6 +1,8 @@
-import os # for heroku only
-import requests # for heroku only
-Port = int(os.environ.get('PORT', 50000)) # for heroku only
+# import os # for heroku only
+# import requests # for heroku only
+# Port = int(os.environ.get('PORT', 50000)) # for heroku only
+import urllib.request # new attempt at Google Drive
+import shutil # new attempt at Google Drive
 import aiohttp
 import asyncio
 import uvicorn
@@ -18,7 +20,7 @@ from starlette.staticfiles import StaticFiles
 
 
 export_file_url = 'https://drive.google.com/uc?export=download&id=1-5gNLy4KpWEAxM7OYfyri8YbtifBRvv7'
-export_file_name = 'export.pkl'
+export_file_name = 'learner.pkl'
 
 with open('app/classes.txt', 'r') as f:
     classes = ast.literal_eval(f.read())
@@ -28,14 +30,27 @@ app = Starlette()
 app.add_middleware(CORSMiddleware, allow_origins=['*'], allow_headers=['X-Requested-With', 'Content-Type'])
 app.mount('/static', StaticFiles(directory='app/static'))
 
+## original code
+# async def download_file(url, dest):
+#     if dest.exists(): return
+#     async with aiohttp.ClientSession() as session:
+#         async with session.get(url) as response:
+#             data = await response.read()
+#             with open(dest, 'wb') as f:
+#                 f.write(data)
 
+
+# new code
 async def download_file(url, dest):
-    if dest.exists(): return
-    async with aiohttp.ClientSession() as session:
-        async with session.get(url) as response:
-            data = await response.read()
-            with open(dest, 'wb') as f:
-                f.write(data)
+    if dest.exists(): return "dest.exists() = True"
+#    async with aiohttp.ClientSession() as session:
+    async with urllib.request.urlopen(url) as response:
+        with open(dest, 'wb') as out_file:
+            shutil.copyfileobj(response, out_file)
+
+# Download the file from `url` and save it locally under `file_name`:
+with urllib.request.urlopen(url) as response, open(file_name, 'wb') as out_file:
+    shutil.copyfileobj(response, out_file)
 
 
 async def setup_learner():
@@ -81,5 +96,5 @@ async def analyze(request):
 
 if __name__ == '__main__':
     if 'serve' in sys.argv:
-        #uvicorn.run(app=app, host='0.0.0.0', port=5000, log_level="info") # render
-        uvicorn.run(app=app, host='0.0.0.0', port=Port, log_level="info") #heroku
+        uvicorn.run(app=app, host='0.0.0.0', port=5000, log_level="info") # render
+        #uvicorn.run(app=app, host='0.0.0.0', port=Port, log_level="info") #heroku
