@@ -25,7 +25,7 @@ with open('app/classes.txt', 'r') as f:
 path = Path(__file__).parent
 
 app = Starlette()
-app.add_middleware(CORSMiddleware, allow_origins=['*'], allow_headers=['X-Requested-With', 'Content-Type'])
+app.add_middleware(CORSMiddleware, allow_origins=['*'], allow_headers=['*'])
 app.mount('/static', StaticFiles(directory='app/static'))
 
 
@@ -82,7 +82,7 @@ async def homepage(request):
 async def analyze(request):
     form = await request.form()
     bytes = await (form["file"].read())
-    wav = BytesIO(bytes) 
+    wav = BytesIO(bytes)
     utc_time = str(int(time.time()))
     sound_file = "tmp/sound_" + utc_time + ".wav"
     _,_,preds =  learn.predict(sound_file)
