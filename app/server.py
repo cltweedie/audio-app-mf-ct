@@ -87,7 +87,7 @@ async def analyze(request):
     sound_file = "tmp/sound_" + utc_time + ".wav"
     _,_,preds =  learn.predict(sound_file)
     predictions = learn.dls.vocab[np.argwhere(preds > 0.3).squeeze()]
-    return JSONResponse({'Classifcations': str(predictions)})
+    return JSONResponse({'classifications': str(predictions)})
 
 
 if __name__ == '__main__':
