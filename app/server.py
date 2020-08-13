@@ -16,7 +16,8 @@ from starlette.staticfiles import StaticFiles
 
 export_file_url = 'https://storage.googleapis.com/fastai-model-bucket/export-download.pkl' # google cloud bucket
 # export_file_url = 'https://drive.google.com/uc?export=download&id=1NryOFwHs6T3HlkG_dsSCslWgcviRv4h-' # google drive
-export_file_name = 'learner.pkl'
+
+export_file_name = 'export.pkl'
 
 with open('app/classes.txt', 'r') as f:
     classes = ast.literal_eval(f.read())
