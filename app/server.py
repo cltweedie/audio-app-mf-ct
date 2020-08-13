@@ -38,7 +38,9 @@ async def download_file(url, dest):
             data = await response.read()
             print("data response",data)
             with open(dest, 'wb') as f:
+                print("writing data")
                 f.write(data)
+                print("file", f)
 
 
 async def setup_learner():
