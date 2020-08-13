@@ -14,7 +14,7 @@ from starlette.responses import HTMLResponse, JSONResponse
 from starlette.staticfiles import StaticFiles
 
 
-export_file_url = 'https://storage.googleapis.com/fastai-model-bucket/resnet18-export-v2.pkl'
+export_file_url = 'https://storage.googleapis.com/fastai-model-bucket/export.pkl'
 export_file_name = 'learner.pkl'
 
 with open('app/classes.txt', 'r') as f:
