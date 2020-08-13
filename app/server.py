@@ -21,6 +21,7 @@ export_file_name = 'export.pkl'
 
 with open('app/classes.txt', 'r') as f:
     classes = ast.literal_eval(f.read())
+
 path = Path(__file__).parent
 
 app = Starlette()
@@ -38,21 +39,23 @@ async def download_file(url, dest):
         async with session.get(url) as response:
             print("response", response)
             data = await response.read()
-            print("data response",data)
+            #print("data response",data)
             with open(dest, 'wb') as f:
                 print("writing data")
                 f.write(data)
                 print("file", f)
 
+def get_file(r): return '../content/train_curated/'+r['fname']
+def get_label(r): return r['labels'].split(',') # split labels on ','
 
 async def setup_learner():
     await download_file(export_file_url, path/export_file_name)
     try:
-        def get_file(r): return '../content/train_curated/'+r['fname'] # to avoid AttributeError
-        def get_label(r): return r['labels'].split(',') # to avoid AttributeError
         print("pkl file exists?:", path/export_file_name, os.path.exists(path/export_file_name))
         print("dl pkl file size:", Path(path/export_file_name).stat().st_size)
+        print("loading learner...")
         learn = load_learner(path/export_file_name)
+        print("learner loaded")
         return learn
     except RuntimeError as e:
         if len(e.args) > 0 and 'CPU-only machine' in e.args[0]:
