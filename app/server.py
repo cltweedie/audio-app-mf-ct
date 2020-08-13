@@ -28,9 +28,13 @@ app.mount('/static', StaticFiles(directory='app/static'))
 
 async def download_file(url, dest):
     print("Attempting pkl file download")
-    if dest.exists(): return
+    print("url:", url)
+    print("dest:", dest)
+    if dest.exists(): return "dest.exists()"
     async with aiohttp.ClientSession() as session:
+        print("async session")
         async with session.get(url) as response:
+            print("response", response)
             data = await response.read()
             print("data response",data)
             with open(dest, 'wb') as f:
